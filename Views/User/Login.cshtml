@@ -1,0 +1,39 @@
+﻿@model Send_SMS_Task.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="m-auto col-4 mt-5">
+        <form method="post">
+            <div class="form-group">
+                @Html.LabelFor(n => n.userName)
+                @Html.TextBoxFor(n => n.userName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.userName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(n => n.password)
+                @Html.PasswordFor(n => n.password, new { @class = "form-control" })
+                @Html.ValidationMessageFor(n => n.password, "", new { @class = "text-danger" })
+            </div>
+            <input type="checkbox" name="remeberme" value="true" />Remember Me
+            <input type="submit" value="login" />
+            @if (ViewBag.status != null)
+            {
+                <p class="text-danger">@ViewBag.status</p>
+            }
+        </form>
+    </section>
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

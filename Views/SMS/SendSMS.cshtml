@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Send SMS </title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+</head>
+<body style="background-color: #f6f3ee">
+
+        <form method="post" class="container m-5 py-2 shadow bg-white rounded">
+            <div class="form-group">
+                <textarea rows="4" placeholder="Write Content Of SMS ..." name="content" class="form-control"></textarea>
+                <input type="submit" value="Send" class="btn btn-success text-center m-3" />
+                <label>@ViewBag.status</label>
+                <a class="btn btn-info" href="/sms/allmessages">See All Message Details</a>
+            </div>
+        </form>
+
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

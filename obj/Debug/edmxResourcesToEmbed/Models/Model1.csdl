@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Innovs_IT_TaskModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Innovs_IT_TaskEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Messages" EntityType="Innovs_IT_TaskModel.Message" />
+    <EntitySet Name="sysdiagrams" EntityType="Innovs_IT_TaskModel.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Innovs_IT_TaskModel.User" />
+    <EntitySet Name="UserMessages" EntityType="Innovs_IT_TaskModel.UserMessage" />
+    <AssociationSet Name="FK_SendSuccess_Message" Association="Innovs_IT_TaskModel.FK_SendSuccess_Message">
+      <End Role="Message" EntitySet="Messages" />
+      <End Role="UserMessage" EntitySet="UserMessages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SendSuccess_User" Association="Innovs_IT_TaskModel.FK_SendSuccess_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserMessage" EntitySet="UserMessages" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Message">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="smsContent" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserMessages" Relationship="Innovs_IT_TaskModel.FK_SendSuccess_Message" FromRole="Message" ToRole="UserMessage" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mobile" Type="Int64" />
+    <NavigationProperty Name="UserMessages" Relationship="Innovs_IT_TaskModel.FK_SendSuccess_User" FromRole="User" ToRole="UserMessage" />
+  </EntityType>
+  <EntityType Name="UserMessage">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" />
+    <Property Name="messageId" Type="Int32" />
+    <NavigationProperty Name="Message" Relationship="Innovs_IT_TaskModel.FK_SendSuccess_Message" FromRole="UserMessage" ToRole="Message" />
+    <NavigationProperty Name="User" Relationship="Innovs_IT_TaskModel.FK_SendSuccess_User" FromRole="UserMessage" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_SendSuccess_Message">
+    <End Type="Innovs_IT_TaskModel.Message" Role="Message" Multiplicity="0..1" />
+    <End Type="Innovs_IT_TaskModel.UserMessage" Role="UserMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Message">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserMessage">
+        <PropertyRef Name="messageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SendSuccess_User">
+    <End Type="Innovs_IT_TaskModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="Innovs_IT_TaskModel.UserMessage" Role="UserMessage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="UserMessage">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,39 @@
+﻿@model List<Send_SMS_Task.Models.Message>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All Messages</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" /> 
+    <style>
+        body{
+            box-sizing:border-box
+        }
+    </style>
+</head>
+<body style="background-color: #f6f3ee">
+    <a class="btn btn-link" href="/sms/SendSMS" role="button">Send Message</a>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class=" col-lg-4 col-md-6 col-sm-12 shadow bg-white rounded mt-2 mr-2">
+                    <div class="jumbotron ">
+                        <p class="lead">@item.smsContent</p>
+                        <a class="btn btn-primary btn-lg my-2" href="/sms/smsUsers/@item.id" role="button">Learn more</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-3.6.0.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

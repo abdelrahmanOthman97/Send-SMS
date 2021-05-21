@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Innovs_IT_TaskModelStoreContainer" CdmEntityContainer="Innovs_IT_TaskEntities">
+    <EntitySetMapping Name="Messages">
+      <EntityTypeMapping TypeName="Innovs_IT_TaskModel.Message">
+        <MappingFragment StoreEntitySet="Message">
+          <ScalarProperty Name="smsContent" ColumnName="smsContent" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="Innovs_IT_TaskModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="Innovs_IT_TaskModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="mobile" ColumnName="mobile" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserMessages">
+      <EntityTypeMapping TypeName="Innovs_IT_TaskModel.UserMessage">
+        <MappingFragment StoreEntitySet="UserMessage">
+          <ScalarProperty Name="messageId" ColumnName="messageId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
